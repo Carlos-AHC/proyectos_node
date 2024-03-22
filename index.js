@@ -8,5 +8,5 @@ app.use(exp.urlencoded({extended: false}));
 app.use(exp.json())
 
 app.listen(process.env.PORT, ( )=>{
-    console.log("servidor e linea");
+    console.log("servidor en linea");
 } );
