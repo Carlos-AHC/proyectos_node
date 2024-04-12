@@ -74,29 +74,33 @@ app.delete('/productos/:id',async(req,res)=>{
         res.status(404).json({"mensaje":"se presentó un error"})
 })
 
-const transporter = nodemailer.createTransport({
-    servic      e: "gmail",
-    auth: {
-      user: "correoUsado@misena.edu.co",
-      pass: `${process.env.GPASS}`,
-    },
-  });
-  
-    const mailOptions = {
-      from: "correousado@misena.edu.co",
-      to: email,
-      subject: subject,
-      text: text,
-    }
-  
-    await transporter.sendMail(mailOptions, (err, info) => {
-      if (err) {
-        console.error(err);
-      } else {
-        console.log("Correo enviado "+ info.response);
-      }
-    });
+app.get('/enviaremail', async(req,res)=>{
 
+    const transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+          user: "andresmao606@gmail.com ",
+          pass: `wvjsiudvptmvfqwl`,
+        },
+      })
+    const mailOptions = {
+        from: "andresmao606@gmail.com",
+        to: "andresmao606@gmail.com",
+        subject: "subject",
+        text: "hola",
+      };
+    
+      await transporter.sendMail(mailOptions, (err, info) => {
+        if (err) {
+          console.error(err);
+        } else {
+          console.log("Correo enviado "+ info.response);
+        }
+      });
+});
+// Esta función se encarga de enviar un correo electrónico por medio de nodemailer
+// recibe como parámetros el correo electrónico del usuario, el asunto y el texto del correo.
+;
 
 app.listen(process.env.PORT, ( )=>{
     console.log("servidor en linea");
