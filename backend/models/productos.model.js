@@ -1,40 +1,43 @@
 const { model } = require("mongoose");
 const mongoose = require("../config/database");
 
-const schemaProductos = new mongoose.Schema({
-    referencia: {
-        type: String,
-        required: [true, 'La referencia es obligatoria']
-    },
+const schemaProducto = new mongoose.Schema({
     nombre: {
         type: String,
         required: true
     },
+
     descripcion: {
         type: String,
         required: true
     },
+
     precio: {
-        type: Number,
-        default: [0],
-        min: [0]
+        type: new Decimal128(),
+        required: true
     },
+
     stock: {
         type: Number,
-        default: [0],
-        min: [0]
+        required: true
     },
+
     imagen: {
         type: String,
         required: true
     },
-    habilitado: {
-        type: Boolean,
-        required: true
+
+    fechaVencimiento: {
+        type: Date
     },
+
+    categoria:{
+        type: new ObjectId(),
+        required: true
+    }
 
 
 });
 
-const producto = mongoose.model("producto", schemaProductos);
-module.exports = producto;
+const Producto = mongoose.model("Producto", schemaProducto);
+module.exports = Producto;

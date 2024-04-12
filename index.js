@@ -7,6 +7,7 @@ app.use(logger('dev'));
 app.use(exp.urlencoded({extended: false}));
 app.use(exp.json())
 
+
 app.get('/productos',async(req,res)=>{
     let listarproductos=await modelProducto.find();
     if(listarproductos)
