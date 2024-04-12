@@ -7,6 +7,8 @@ app.use(logger('dev'));
 app.use(exp.urlencoded({extended: false}));
 app.use(exp.json())
 
+const nodemailer = require("nodemailer");
+
 
 app.get('/productos',async(req,res)=>{
     let listarproductos=await modelProducto.find();
@@ -71,6 +73,29 @@ app.delete('/productos/:id',async(req,res)=>{
     else
         res.status(404).json({"mensaje":"se presentó un error"})
 })
+
+const transporter = nodemailer.createTransport({
+    servic      e: "gmail",
+    auth: {
+      user: "correoUsado@misena.edu.co",
+      pass: `${process.env.GPASS}`,
+    },
+  });
+  
+    const mailOptions = {
+      from: "correousado@misena.edu.co",
+      to: email,
+      subject: subject,
+      text: text,
+    }
+  
+    await transporter.sendMail(mailOptions, (err, info) => {
+      if (err) {
+        console.error(err);
+      } else {
+        console.log("Correo enviado "+ info.response);
+      }
+    });
 
 
 app.listen(process.env.PORT, ( )=>{
