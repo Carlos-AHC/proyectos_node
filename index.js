@@ -9,6 +9,10 @@ app.use(exp.json())
 
 const nodemailer = require("nodemailer");
 
+app.get("/", (req, res) => {
+    res.send("Welcome to API");
+});
+
 
 app.get('/productos',async(req,res)=>{
     let listarproductos=await modelProducto.find();
@@ -79,13 +83,13 @@ app.get('/enviaremail', async(req,res)=>{
     const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-          user: "andresmao606@gmail.com ",
-          pass: `wvjsiudvptmvfqwl`,
+          user: "carlosholguin722@gmail.com ",
+          pass: `ydfmjpokpxjomfpe`,
         },
       })
     const mailOptions = {
-        from: "andresmao606@gmail.com",
-        to: "andresmao606@gmail.com",
+        from: "carlosholguin722@gmail.com ",
+        to: "carlosholguin722@gmail.com ",
         subject: "subject",
         text: "hola",
       };
